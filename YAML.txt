@@ -1,0 +1,99 @@
+# documentation.yaml
+openapi: 3.0.0
+info:
+  title: API de Dashboard de Gestión de Pedidos
+  description: API para obtener métricas del dashboard y gestionar eventos de pedidos.
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:5000/api
+    description: Servidor de desarrollo local
+
+paths:
+  /dashboard:
+    get:
+      summary: Obtener datos del Dashboard
+      description: Retorna las métricas clave para el dashboard (ingresos, productos, pedidos).
+      responses:
+        '200':
+          description: Datos del dashboard recuperados exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_revenue:
+                    type: number
+                    example: 15800.00
+                  products_sold:
+                    type: integer
+                    example: 25
+                  pending_orders:
+                    type: integer
+                    example: 65
+                  last_orders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        product:
+                          type: string
+                        quantity:
+                          type: integer
+                        status:
+                          type: string
+              examples:
+                'Datos de muestra':
+                  value:
+                    total_revenue: 15800.00
+                    products_sold: 25
+                    pending_orders: 65
+                    last_orders:
+                      - id: "P-001"
+                        product: "Laptop"
+                        quantity: 1
+                        status: "Entregado"
+                      - id: "P-002"
+                        product: "Mouse"
+                        quantity: 2
+                        status: "Pendiente"
+                      
+  /orders/event:
+    post:
+      summary: Manejar un evento de pedido
+      description: Simula la recepción de un nuevo evento de pedido. Este endpoint simula la integración con AWS Lambda/S3 para el procesamiento.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_id:
+                  type: string
+                customer_id:
+                  type: string
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      product_id:
+                        type: string
+                      quantity:
+                        type: integer
+                      price:
+                        type: number
+      responses:
+        '200':
+          description: Evento de pedido procesado con éxito.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  status:
+                    type: string
