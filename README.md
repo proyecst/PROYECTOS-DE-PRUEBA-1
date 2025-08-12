@@ -1,71 +1,72 @@
-Dashboard de Gestión de Pedidos
-Descripción del Proyecto
-Este proyecto es una plataforma de gestión de pedidos, con una interfaz de usuario (frontend) y una API de backend. La aplicación permite visualizar métricas clave como ingresos totales, productos vendidos y pedidos pendientes, y está diseñada para simular una arquitectura escalable en la nube utilizando servicios de AWS.
 
-Características
-Dashboard Interactivo: Muestra métricas clave en tiempo real.
+Order Management Dashboard
+Project Description
+This project is an order management platform with a user interface (frontend) and a backend API. The application allows you to view key metrics such as total revenue, products sold, and pending orders, and is designed to simulate a scalable cloud architecture using AWS services.
 
-Backend con Flask: Una API RESTful simple para servir los datos del dashboard.
+Features
+Interactive Dashboard: Displays key metrics in real time.
 
-Frontend con HTML/CSS/JS: Interfaz de usuario intuitiva y adaptable.
+Flask Backend: A simple RESTful API for serving dashboard data.
 
-Simulación de AWS: Demostración de cómo se integrarían servicios como AWS Lambda y S3 para un manejo robusto de eventos.
+HTML/CSS/JS Frontend: Intuitive and adaptable user interface.
 
-Documentación de la API: Archivo documentation.yaml para una clara comprensión de los endpoints.
+AWS Simulation: Demonstration of how services such as AWS Lambda and S3 would be integrated for robust event handling.
 
-Arquitectura
-El proyecto está dividido en dos componentes principales:
+API Documentation: Documentation.yaml file for a clear understanding of the endpoints.
 
-Frontend: Una interfaz web estática construida con HTML, CSS y JavaScript que se conecta a la API de backend para obtener y mostrar datos.
+Architecture
+The project is divided into two main components:
 
-Backend: Una API RESTful desarrollada con Python y Flask que simula el procesamiento de datos y la integración con servicios en la nube.
+Frontend: A static web interface built with HTML, CSS, and JavaScript that connects to the backend API to retrieve and display data.
 
-Integración con AWS (Simulación)
-Hemos simulado un flujo de eventos de pedidos utilizando dos servicios clave de AWS:
+Backend: A RESTful API developed with Python and Flask that simulates data processing and integration with cloud services.
 
-AWS Lambda: Una función sin servidor que se activaría al recibir un nuevo pedido a través del endpoint /api/orders/event. Esta función procesaría los datos del pedido.
+AWS Integration (Simulation)
+We simulated a flow of order events using two key AWS services:
 
-Amazon S3: El lugar de almacenamiento de eventos. La función Lambda guardaría los detalles de cada pedido como un archivo JSON en un bucket de S3, creando un registro de eventos duradero e inmutable.
+AWS Lambda: A serverless function that would be triggered upon receiving a new order through the /api/orders/event endpoint. This function would process the order data.
 
-Instalación
-Requisitos
-Asegúrate de tener Python 3.x y pip instalados.
+Amazon S3: The event storage location. The Lambda function would save the details of each order as a JSON file in an S3 bucket, creating a durable and immutable event record.
 
-Pasos
-Clona el repositorio:
+Installation
+Requirements
+Make sure you have Python 3.x and pip installed.
+
+Steps
+Clone the repository:
 
 Bash
 
-git clone [URL_DEL_REPOSITORIO]
-cd [nombre-del-proyecto]
-Configura el entorno virtual e instala las dependencias del backend:
+git clone [REPOSITORY_URL]
+cd [project_name]
+Set up the virtual environment and install the backend dependencies:
 
 Bash
 
 python -m venv venv
-source venv/bin/activate  # En macOS/Linux
-# o venv\Scripts\activate # En Windows
+source venv/bin/activate # On macOS/Linux
+# or venv\Scripts\activate # On Windows
 
 pip install Flask flask_cors
-Ejecuta el backend:
+Run the backend:
 
 Bash
 
 python app.py
-El servidor se iniciará en http://127.0.0.1:5000.
+The server will start at http://127.0.0.1:5000.
 
-Abre el frontend:
-Simplemente abre el archivo index.html en tu navegador web. El JavaScript en el archivo se conectará automáticamente al backend para cargar los datos.
+Open the frontend:
+Simply open the index.html file in your web browser. The JavaScript in the file will automatically connect to the backend to load the data.
 
-Estructura del Proyecto
-.
-├── app.py              # Backend de la API (Python/Flask)
-├── documentation.yaml  # Documentación de la API (OpenAPI)
-├── index.html          # Frontend de la interfaz de usuario
-└── style.css           # Estilos para el frontend
-Endpoints de la API
-La API del backend expone los siguientes endpoints:
+Project Structure
 
-Método	Endpoint	Descripción
-GET	/api/dashboard	Obtiene las métricas y datos para el dashboard.
-POST	/api/orders/event	Simula el procesamiento de un nuevo evento de pedido.
+├── app.py # API backend (Python/Flask)
+├── documentation.yaml # API documentation (OpenAPI)
+├── index.html # UI frontend
+└── style.css # Styles for the frontend
+API Endpoints
+The backend API exposes the following endpoints:
+
+Method Endpoint Description
+GET /api/dashboard Gets metrics and data for the dashboard.
+POST /api/orders/event Simulates processing a new order event.
